@@ -1,152 +1,214 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
-    "height": 400,
-    "projection": {"type": "equalEarth"},
-    "data": {
-      "url": "https://raw.githubusercontent.com/byap0005/3179/main/ne_110m.json",
-      "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 400,
+  "background": "lightgrey",
+  "data": {
+    "url": "https://raw.githubusercontent.com/byap0005/3179/main/ne_110m.json",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_110m_admin_0_countries"
+    }
+  },
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "transform": [
+        {
+          "calculate": "'No data for ' + datum.properties.NAME",
+          "as": "note"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "gray",
+        "stroke": "lightgrey"
+      },
+      "encoding": {
+        "tooltip": {
+          "field": "note"
+        }
+      }
     },
-      
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/byap0005/DV2/main/ocean.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "oceans"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "skyblue"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/byap0005/DV2/main/graticules.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_graticules_30"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "grey"
+      }
+    },
+    {
       "transform": [
         {
           "lookup": "properties.NAME",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/byap0005/3179/main/Unemployment%20Rate.csv"
+              "url": "https://raw.githubusercontent.com/byap0005/DV2/main/Unemployment%20Rate.csv"
             },
             "key": "Country Name",
             "fields": ["Unemployment Rate"]
           }
         }
       ],
-    "layer": [
-      {
-        "mark": {"type": "geoshape"},
-        "encoding": {
-          "color": {  
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "color": {
+          "field": "Unemployment Rate",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [
+              0,
+              5,
+              10,
+              15,
+              20,
+              25,
+              30
+            ],
+            "range": ["#EFA629", "#FFA304", "#ED7109", "#ED7109", "#DB470D", "#CA2410", "#B9131F"]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.NAME",
+            "type": "nominal",
+            "title": "Country"
+          },
+          {
             "field": "Unemployment Rate",
-            "type": "quantitative",
-            "scale": {
-              "type": "threshold",
-              "domain": [0, 5 , 10, 15, 20, 25, 30],
-              "range": ["#44F8E2", "#22E5F3", "#00B1ED", "#006FD3", "#0037B8", "#000A9C", "#06007F"]
-        
-            }
-          },
-          "tooltip": [
-            {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-            {"field": "Unemployment Rate", "type": "quantitative"}
-          ]
-        }
-      },
-      {
-        "mark": {
-          "type": "text",
-          "align": "right",
-          "baseline": "middle",
-          "dx": -200,
-          "dy": -100,
-          "fontsize": 11.5,
-          "fontStyle": "italic"
-       
-        },
-        "encoding": {
-          "text": {"field": "properties.NAME", "type": "nominal"},
-          "color": {"value": "black"},
-          "opacity": {
-            "condition": {"test": "datum['properties.NAME'] == 'United States of America'", "value": 1},
-            "value": 0
-          },
-          "tooltip": [
-            {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-            {"field": "Unemployment Rate", "type": "quantitative"}
-          ]
-
-        }
-        
-      },
-      {
-        "mark": {
-          "type": "text",
-          "align": "right",
-          "baseline": "middle",
-          "dx": -70,
-          "dy": 60,
-          "fontsize": 11.5,
-          "fontStyle": "italic"
-       
-        },
-        "encoding": {
-          "text": {"field": "properties.NAME", "type": "nominal"},
-          "color": {"value": "black"},
-          "opacity": {
-            "condition": {"test": "datum['properties.NAME'] == 'Brazil'", "value": 1},
-            "value": 0
-          },
-          "tooltip": [
-            {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-            {"field": "Unemployment Rate", "type": "quantitative"}
-          ]
-
-        }
-        
-      },
-      {
-        "mark": {
-          "type": "text",
-          "align": "right",
-          "baseline": "middle",
-          "dx": 250,
-          "dy": -90,
-          "fontsize": 11.5,
-          "fontStyle": "italic"
-       
-        },
-        "encoding": {
-          "text": {"field": "properties.NAME", "type": "nominal"},
-          "color": {"value": "black"},
-          "opacity": {
-            "condition": {"test": "datum['properties.NAME'] == 'China'", "value": 1},
-            "value": 0
-          },
-          "tooltip": [
-            {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-            {"field": "Unemployment Rate", "type": "quantitative"}
-          ]
-
-        }
-        
-      },
-      {
-        "mark": {
-          "type": "text",
-          "align": "right",
-          "baseline": "middle",
-          "dx": 280,
-          "dy": 100,
-          "fontsize": 11.5,
-          "fontStyle": "italic"
-       
-        },
-        "encoding": {
-          "text": {"field": "properties.NAME", "type": "nominal"},
-          "color": {"value": "black"},
-          "opacity": {
-            "condition": {"test":"datum['properties.NAME'] == 'Australia'", "value": 1},
-            "value": 0
-          },
-          "tooltip": [
-            {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-            {"field": "Unemployment Rate", "type": "quantitative"}
-          ]
-
-        }
-        
+            "type": "quantitative"
+          }
+        ]
       }
-    
-    ]  
-  }
-
-  
-  
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "middle",
+        "dx": -200,
+        "dy": -110,
+        "fontsize": 11.5,
+        "fontStyle": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "properties.NAME",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "black"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum['properties.NAME'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "middle",
+        "dx": -120,
+        "dy": 30,
+        "fontsize": 11.5, 
+        "fontStyle": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "properties.NAME",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "black"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum['properties.NAME'] == 'Brazil'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "middle",
+        "dx": 230,
+        "dy": -90,
+        "fontsize": 11.5,
+        "fontStyle": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "properties.NAME",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "black"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum['properties.NAME'] == 'China'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "baseline": "middle",
+        "dx": 280,
+        "dy": 70,
+        "fontsize": 11.5,
+        "fontStyle": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "properties.NAME",
+          "type": "nominal"
+        },
+        "color": {
+          "value": "black"
+        },
+        "opacity": {
+          "condition": {
+            "test": "datum['properties.NAME'] == 'Australia'",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ]
+}

@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-    <script src="Homework10.js"></script>
+    <script src="DV2.js"></script>
     <title>Data Visualisation 2 </title>
 </head>
 <style>.centeralign {
@@ -18,6 +18,7 @@
 
 
 <style>
+
     * {
     margin: 0;
     }
@@ -37,25 +38,44 @@ html, body {
     height: 20px;
 }
     h1{
-    
+        font-family: sans-serif;
         color:white;
-        background-color:rgb(73, 36, 36);
+        background-color:black;
     }
 
     h2{
+        font-family: sans-serif;
         color:white;
-        background-color:rgb(78, 58, 58);
+        background-color:black;
     }
 
     p{
+        font-weight: 500;
+        font-size: medium;
+        font-family: sans-serif;
         color:black;
-        background-color:beige;
+        background-color:lightgrey;
     }
 
     body {
     margin:0;
     padding:0;
 }
+
+body {
+    background-color: lightgrey;
+}
+
+#middle {
+  margin: auto;
+  width: 1000px; 
+  padding: 10px;
+  font-family: 'Lexend Deca', sans-serif; 
+  color: black;    
+  border-radius: 20pt;
+  background-color: lightgray;
+}
+
 
 </style>
 
@@ -64,26 +84,34 @@ html, body {
 
 
 <body> 
+    <div id = "middle">
     <h1><center>Unemployment Rate Dashboard</center></h1>
-    <p class="centeralign">Unemployment rate is the percentage of people in the labour force who are unemployed. For the past few decades, unemployment rate has 
-        always been a  topic that everyone is discussing about. This dashboard will help users better understand how is the trend of the unemployment rate
-        around the world.</p>
+    <p class="centeralign"><b>Unemployment rate</b> is the <b>percentage of people in the labour 
+        force</b> who are <b>unemployed</b>. For the past few decades, <b>unemployment 
+        rate</b> has always been a topic that everyone is discussing 
+        about. This dashboard will help users better understand the <b>trend of the unemployment rate</b> around the world.</p>
     <center><h2>Visualisation 1: Unemployment Rate of all the Countries Around the World for 2021</h1>
-        <p class="centeralign">The first visualisation shown below is the unemployment rate for countries around the world in the year 2021.
+        <p class="centeralign">The first visualisation shown below is the <b>unemployment rate for countries around the world</b> in the year 2021.
         </p>
     <div id="map">
     </div>
-    <h2>Visualisation 3: Unemployment rate of Australia from Year 2001 - 2021</h1>
-        <p class="centeralign">The following visualisation focuses on the unemployment rate in Australia by monitoring the up and down of the unemployment
-            rate in Australia from year 2001 to 2021. </p>
+    <h2>Visualisation 2: Unemployment rate of Australia from Year 2001 - 2021</h2>
+        <p class="centeralign">The following visualisation<b> focuses on the unemployment rate in Australia </b>by monitoring the up and down of the unemployment
+            rate in <b>Australia</b> from year 2001 to 2021. </p>
     <div id="line_chart">
     </div>
-    <h2>Visualisation 2: Unemployment rate of different gender in Australia from 2001 - 2021</h1>
-        <p class="centeralign">This visualisation below visualises the unemployment rate of deferent gender in Australia from year 
+    <h2>Visualisation 3: Unemployment rate of different gender in Australia from 2001 - 2021</h2>
+        <p class="centeralign">This visualisation below visualises the <b>unemployment rate of deferent gender</b> in <b>Australia</b> from year 
             2001 to 2021.
         </p>
         <div id="bar_chart">
-        </div></center>
+        </div>
+    <h2>Visualisation 4: Number of people employed in each state of Australia for 2022</h2>
+        <p class="centeralign">The last visualisation below focuses on each <b>state</b> of <b>Australia</b> on the <b>number of employed people</b> this year.
+        </p>
+        <div id="bar"></div></center>
+        <p><center><b>Data Visualisation 2 by Brandon Yap</b></center></p>
+    </div>
 </body>
 
 </html>

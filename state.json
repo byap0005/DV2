@@ -1,0 +1,28 @@
+{   
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 800,
+    "height": 400,
+    "background": "lightgrey",
+    "data": { "url": "https://raw.githubusercontent.com/byap0005/DV2/main/State%20unemployment%20rate.csv"},
+    "mark": "bar",
+    "encoding": {
+      "y": {"field": "State", "type": "nominal"},
+      "x": {
+        "field": "EmployedPeople", "type": "quantitative",
+        "title": "Number of people employed"
+      },
+      "color": {
+              "field": "State",
+              "scale": {"range": ["#008BFF"]},
+              "legend": null
+            },
+      "tooltip": [
+              {
+                "field": "State",
+                "type": "nominal",
+                "title": "State Name"
+              },
+              {"field": "EmployedPeople", "type": "quantitative", "title": "Number of people employed"}
+            ]
+    }
+  }
